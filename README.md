@@ -6,6 +6,5 @@ In short:
 - GitLab pipeline for integrating and deploying the application.
 - Additionally a possibility of saving and loading tasks list to/from a database (MongoDB) was added.
 
-
 - Instructions for local running:
     Run command 'docker-compose up -d', then see in the browser localhost:2000(for frontend) and localhost:4000 (for backend).
