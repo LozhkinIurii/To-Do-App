@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import './tasks.css';
 import TaskListItem from "./taskListItem";
 
+
 const TaskList = () => {
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState({id: '', name: ''});
     const [id, setId] = useState(4);
+    // const [listdb, setListdb] = useState([]);
+    
 
     useEffect(() => { 
         const fetchTasks = async() => {
@@ -17,8 +20,8 @@ const TaskList = () => {
         fetchTasks();
     }, []);
     
-    const addTask=(event)=>{
-        event.preventDefault();
+    const addTask= async (event)=>{
+        await event.preventDefault();
         if(newTask.name === ''){
             return;
         } else {
@@ -46,6 +49,28 @@ const TaskList = () => {
         setTasks(newtasks);
     }
 
+    const savedb = () =>{
+        tasks.map(async item => {
+            await fetch(`${process.env.REACT_APP_BACKEND}/v1/task/list`, {
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(item)
+            });
+        })
+    }
+
+
+    const loadFromDb = () =>{
+        const fetchList = async() => {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND}/v1/task/list`);
+            const list = await response.json();
+            setTasks(list);
+        }
+        fetchList();
+    }
+
     return(
         <>
             <h1>My To-Do list</h1>
@@ -53,7 +78,7 @@ const TaskList = () => {
             <input id = "input" type="text" placeholder="Type a task" name="name" value={newTask.name} onChange={inputChanged}></input>
             <input id='submitBtn' type="submit" value = "Add"/>
             </form>
-            <TaskListItem tasks={tasks} deleteTask={deleteTask} markDone={markDone}/>
+            <TaskListItem tasks={tasks} deleteTask={deleteTask} markDone={markDone} loadFromDb={loadFromDb} savedb={savedb}/>
         </>
     )
 };

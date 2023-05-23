@@ -15,6 +15,8 @@ const TaskListItem = props => {
                 }
                 </tbody>
             </table>
+            <button onClick={props.savedb} style={{marginLeft:'40px', marginTop:'40px'}}>Save to DB</button>
+            <button onClick={props.loadFromDb}>Load from DB</button>
         </>
     );
 }

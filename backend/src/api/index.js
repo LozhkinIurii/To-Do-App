@@ -1,15 +1,13 @@
 const express = require('express');
-const emojis = require('./emojis');
 const router = express.Router();
 const tasks = require('./toDoApi');
+const list = require('./listDB');
+const connectDB = require('./db') ; 
 
-router.get('/', (req, res) => {
-  res.json({
-    message: 'API - 👋🌎🌍🌏',
-  });
-});
+connectDB();
 
-router.use('/emojis', emojis);
+
 router.use('/tasks', tasks);
+router.use('/task/list', list);
 
 module.exports = router;
