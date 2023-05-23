@@ -4,7 +4,7 @@ const TaskListItem = props => {
             <table id="table">
                 <tbody>
                 {
-                props.tasks.map((task, index) => 
+                props.tasks.map((task, index) =>
                 <tr key={index}>
                     <td>{index+1}. </td>
                     <td id={task.id}>{task.name}</td>
