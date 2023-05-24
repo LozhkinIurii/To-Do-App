@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const tasks = require('./toDoApi');
 const list = require('./listDB');
-const connectDB = require('./db') ; 
+const connectDB = require('./db') ;
 
-connectDB();
+// connectDB();
 
 
 router.use('/tasks', tasks);
