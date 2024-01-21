@@ -9,3 +9,6 @@ In short:
 
 - Instructions for local running:
     Run command 'docker compose up -d', then see in the browser localhost:2000(for frontend) and localhost:4000 (for backend).
+
+NB:
+Server, provided earlier, is not available anymore. Running possible now on local machine only.
