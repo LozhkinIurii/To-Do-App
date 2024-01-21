@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
     tasks.push({ id, name });
     res.status(201).json({ message: 'Added' });
 });
-  
+
 router.patch('/:id', (req, res) => {
     const { id } = req.params;
     const { name } = req.body;
@@ -45,12 +45,12 @@ router.patch('/:id', (req, res) => {
     tasks[index] = updatedTask;
     res.status(200).json({ message: 'Updated' });
 });
-  
+
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
     const taskToDelete = tasks.findIndex((m) => m.id === Number(id));
     tasks.splice(taskToDelete, 1);
     res.status(200).json({ message: 'Deleted' });
 });
-  
+
 module.exports = router;
